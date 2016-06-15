@@ -18,6 +18,10 @@ public class Trail {
 	@GeneratedValue //Para que me genere el id automaticamente 
 	private long id;
 	
+	public long getId() {
+		return id;
+	}
+
 	private String name;
 
 	private String description;

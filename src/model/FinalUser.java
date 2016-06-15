@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
@@ -10,6 +11,13 @@ import javax.persistence.OneToMany;
 //@Table //COmentado para probar si es esto lo que hace que se generen 2 tablas en la relacion many to many
 @DiscriminatorValue("FU")
 public class FinalUser extends User {
+
+	public FinalUser() {
+		super();
+		done = new ArrayList<Trail>();
+		ratings = new ArrayList<Rating>();
+		myTrails = new ArrayList<Trail>();
+	}
 
 	private Boolean isEnable;
 
@@ -24,6 +32,7 @@ public class FinalUser extends User {
 	private List<Trail>  myTrails;
 
 
+	
 	public Boolean getsEnable() {
 		return isEnable;
 	}
@@ -36,6 +45,7 @@ public class FinalUser extends User {
 	}
 
 	public void yoHiceRuta(Trail ruta) {
+		done.add(ruta);
 	}
 
 	public void newTrail() {

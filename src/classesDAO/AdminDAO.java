@@ -1,10 +1,6 @@
 package classesDAO;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
-import model.Activity;
 import model.Admin;
 
 public class AdminDAO extends GenericDAO<Admin> implements interfacesDAO.IAdminDAO{

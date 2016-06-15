@@ -13,17 +13,18 @@ import interfacesDAO.IActivityDAO;
 
 public class FactoryDAO {
 	private static ActivityDAO activityDAO = new ActivityDAO();
-	private static UserDAO userDAO = new UserDAO();
 	private static AdminDAO adminDAO = new AdminDAO();
-	private static FinalUserDAO finalUserDAO = new FinalUserDAO();
-	private static RatingDAO ratingDAO = new RatingDAO();
 	private static DifficultyDAO difficultyDAO= new DifficultyDAO();
+	private static FinalUserDAO finalUserDAO = new FinalUserDAO();
 	private static GeoPointDAO geoPointDAO= new GeoPointDAO();
+	
 	private static PhotoDAO photoDAO= new PhotoDAO();
+	private static RatingDAO ratingDAO = new RatingDAO();
 	private static TrailDAO trailDAO= new TrailDAO();
-
+	private static UserDAO userDAO = new UserDAO();
+	
 	public static IActivityDAO getActivityDAO(){
-		return activityDAO; //Ojo despues que no se generen muchos entity managers 
+		return activityDAO; 
 	}
 
 	public static UserDAO getUserDAO() {

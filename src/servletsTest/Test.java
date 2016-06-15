@@ -106,24 +106,49 @@ response.getWriter().append("\n\n\n\nTest de Difficulty: \n");
 		
 		//TODO: PROBAR RELACION CON TRAIL!
 response.getWriter().append("\n\n\n\nTest de Trail: \n");
-		
+String name="Manuel"; 
+response.getWriter().append("Creo un usuario con el nombre: "+name+" \n");		
 		FinalUser owner = new FinalUser();
-		owner.setName("Manuel");
+		owner.setName(name);
+		String description=" Un Gran Trail!! ";
+		String trName="trail muy interesante!! :)";
+		response.getWriter().append("Creo un Trail con nombre "+trName+" y descripcion: "+description+" \n");
 		Trail tr = new Trail();
+		tr.setName(trName);
+				tr.setDescription(description);
 		FinalUserDAO finUsrDao = FactoryDAO.getFinalUserDAO();
+		response.getWriter().append("Persisto el usuario \n");
 		finUsrDao.create(owner);
+		response.getWriter().append("Asigno al trail recientemente creado: un activity, una difficulty y un owner(user) creados en sus correspondientes tests\n");
 		tr.setActivity(act);
 		tr.setDifficulty(dif);
 		tr.setOwner(owner);
 		
 		TrailDAO trailDao = FactoryDAO.getTrailDAO();
-		tr.setName("trail muy interesante!! :)");
-		trailDao.create(tr);
-		
-		response.getWriter().append("Obtengo todas la Trails de la BBDD: \n");
+		response.getWriter().append("Persisto el Trail \n");
+		trailDao.create(tr);		
+		response.getWriter().append("Obtengo todas los Trails de la BBDD: \n");
 		ArrayList<Trail> list1 = (ArrayList<Trail>)trailDao.getAll();
-		i0=0;
-		for (Trail trAux:list1) {response.getWriter().append("Trail "+i0+++": " +trAux.getName()+"\n El propietario de este trail es: "+trAux.getOwner().getName());}
+		
+		for (Trail trAux:list1) {response.getWriter().append("Trail con id: "+trAux.getId()+" => " +trAux.getName()+
+				"\n El propietario de este trail es: "+trAux.getOwner().getName()+
+				"\n La dificultad de este trail es: "+trAux.getDifficulty().getName()+
+				"\n La activity de este trail es: "+trAux.getActivity().getName()+
+				"\n\n"
+				);}
+		
+		String name2="Tomas"; 
+		response.getWriter().append(" \n \n Creo un usuario con el nombre: "+name2+", ejecuto el metodo \"yoHiceRuta(ruta)\" y persisto \n");		
+		FinalUser adventurer = new FinalUser();
+		adventurer.setName(name2);
+		adventurer.yoHiceRuta(tr);
+		finUsrDao.create(adventurer);
+		response.getWriter().append("\nEl usuario "+adventurer.getName()+" con id "+adventurer.getId()+" Recorrio los siguientes Trails : \n"); 
+		for (Trail trAux:adventurer.getDone()) {response.getWriter().append(trAux.getName()+" (id="+trAux.getId()+")\n");}
+		
+		
+		//response.getWriter().append("\nLa Trail con id "+tr.getId()+" Fue recorrida por : \n"); //TODO fix it!
+		//for (FinalUser usrAux:tr.getDone_by()) {response.getWriter().append(usrAux.getName()+"(id="+usrAux.getId()+"\n");}
 
 		
 		/*
