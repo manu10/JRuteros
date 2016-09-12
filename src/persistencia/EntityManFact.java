@@ -1,4 +1,4 @@
-package cosas;
+package persistencia;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 

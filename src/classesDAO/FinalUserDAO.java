@@ -5,10 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
 import model.FinalUser;
 import model.Rating;
 import model.Trail;
+import persistencia.EntityManFact;
 
 public class FinalUserDAO extends GenericDAO<FinalUser> implements interfacesDAO.IFinalUserDAO{
 	private static EntityManagerFactory manFac;	

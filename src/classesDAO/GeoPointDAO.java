@@ -2,9 +2,8 @@ package classesDAO;
 
 import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
-
 import model.GeoPoint;
+import persistencia.EntityManFact;
 
 public class GeoPointDAO extends GenericDAO<GeoPoint> implements interfacesDAO.IGeoPointDAO{
 	private static EntityManagerFactory manFac;	

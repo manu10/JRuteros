@@ -3,9 +3,9 @@ package classesDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
 import model.Activity;
 import model.User;
+import persistencia.EntityManFact;
 
 public class UserDAO extends GenericDAO<User> implements interfacesDAO.IUserDAO{
 	private static EntityManagerFactory manFac;	
@@ -27,7 +27,7 @@ public class UserDAO extends GenericDAO<User> implements interfacesDAO.IUserDAO{
 	@Override
 	public User getUserByUserEmail(String email) {
 		EntityManager em;
-		String hql = "FROM "+this.entityClass+" U WHERE U.email=\'"+email+"\'";
+		String hql = "FROM "+entityClass.getName()+" U WHERE U.email=\'"+email+"\'";
 		em = manFac.createEntityManager();//Se conecta a la BD
 		User usr=(User) em.createQuery(hql).getResultList().get(0);
 		em.close();

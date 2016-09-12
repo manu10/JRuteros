@@ -2,8 +2,8 @@ package classesDAO;
 
 import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
 import model.Difficulty;
+import persistencia.EntityManFact;
 
 public class DifficultyDAO extends GenericDAO<Difficulty> implements interfacesDAO.IDifficultyDAO{
 	private static EntityManagerFactory manFac;	

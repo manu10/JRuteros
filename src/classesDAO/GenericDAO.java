@@ -6,9 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-import cosas.EntityManFact;
 import interfacesDAO.IGenericDAO;
 import model.Activity;
+import persistencia.EntityManFact;
 
 public class GenericDAO<T> implements IGenericDAO<T>{
 	private static EntityManagerFactory manFac;	

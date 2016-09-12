@@ -17,7 +17,7 @@ public class Rating {
 	@ManyToOne
 	private FinalUser rateBy;
 	
-	@ManyToOne
+	@ManyToOne 
 	private Trail trail;
 
 	public Integer getValue() {

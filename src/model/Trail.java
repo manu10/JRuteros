@@ -2,22 +2,33 @@ package model;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import persistencia.FactoryDAO;
+
 @Entity
 //@Table //COmentado para probar si es esto lo que hace que se generen 2 tablas en la relacion many to many
 public class Trail {
+	public Trail() {
+		super();
+		ratings= new ArrayList<Rating>();
+		done_by = new ArrayList<FinalUser>();
+	}
+
 	@Id
 	@GeneratedValue //Para que me genere el id automaticamente 
 	private long id;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -40,28 +51,33 @@ public class Trail {
 
 	private float rateAvg;
 
+//	@OneToMany(mappedBy="trail",cascade=CascadeType.ALL)
 	@OneToMany(mappedBy="trail")
 	private List<Photo>  photos;
-	
+
+//	@OneToMany(mappedBy="trail",cascade=CascadeType.ALL)
 	@OneToMany(mappedBy="trail") 
 	private List<GeoPoint>  points;
-	
+
 	@ManyToOne
 	private Difficulty difficulty;
-	
+
 	@ManyToOne		//	@ManyToOne(optional = false)
 	private Activity activity;
-	
-	@ManyToMany(mappedBy="done")
+
+//	@ManyToMany(mappedBy="done",cascade=CascadeType.REMOVE,fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy="done",fetch = FetchType.EAGER)
 	private List<FinalUser>  done_by;
-	
+
+//	@OneToMany(mappedBy="trail", fetch=FetchType.LAZY)
+//	@OneToMany(mappedBy="trail",cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	@OneToMany(mappedBy="trail")
 	private List<Rating>  ratings;
 
 	@ManyToOne
 	private FinalUser owner;
 
-	
+
 	public String getName() {
 		return name;
 	}
@@ -167,6 +183,7 @@ public class Trail {
 	}
 
 	public List<Rating> getRatings() {
+		//		return FactoryDAO.getRatingDAO().getRatingByTrail(this.getId()); //NO DEBE IR ESTO O SI??
 		return ratings;
 	}
 

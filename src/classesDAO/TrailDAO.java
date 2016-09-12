@@ -5,14 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
-import cosas.FactoryDAO;
 import model.Activity;
 import model.Difficulty;
 import model.GeoPoint;
 import model.Photo;
 import model.Rating;
 import model.Trail;
+import persistencia.EntityManFact;
+import persistencia.FactoryDAO;
 
 public class TrailDAO extends GenericDAO<Trail> implements interfacesDAO.ITrailDAO{
 	private static EntityManagerFactory manFac;	
@@ -39,13 +39,22 @@ public class TrailDAO extends GenericDAO<Trail> implements interfacesDAO.ITrailD
 	@Override
 	public Trail getById(Long id) {
 		EntityManager em;
-		String hql = "FROM "+entityClass.getName()+"A WHERE A.id=\'"+id+"\'";
+		
+		
+		String hql = "FROM "+entityClass.getName()+" WHERE id=\'"+id+"\'";
+		//em.find(entityClass, id);
 		em = EntityManFact.getInstance().getEntityManagerFactory().createEntityManager();//Se conecta a la BD
-		Trail trail =(Trail) em.createQuery(hql).getResultList().get(0);
+		//Trail trail =(Trail) em.createQuery(hql).getResultList().get(0);
+		Trail trail =em.find(Trail.class, id);
 		DifficultyDAO diffDAO = FactoryDAO.getDifficultyDAO();
 		trail.setDifficulty(new Difficulty());
 		//TODO: MODIFICAR!! SEGURAMENTE SE DEBE HACER TODO AUTOMATICO ESTO!! HAY QUE LEER!!
 		//QUiza ni sea necesario este metodo!
+		trail.getRatings();
+		for (Rating rat : trail.getRatings()) {
+			rat.getValue();
+			rat.getRateBy();
+		}
 		em.close();
 		return trail;
 	}

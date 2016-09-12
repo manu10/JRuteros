@@ -1,4 +1,4 @@
-package cosas;
+package persistencia;
 
 import classesDAO.ActivityDAO;
 import classesDAO.AdminDAO;

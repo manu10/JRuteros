@@ -3,8 +3,8 @@ package classesDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
 import model.Activity;
+import persistencia.EntityManFact;
 
 public class ActivityDAO extends GenericDAO<Activity> implements interfacesDAO.IActivityDAO{
 	private static EntityManagerFactory manFac;	

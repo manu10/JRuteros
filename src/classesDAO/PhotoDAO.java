@@ -2,8 +2,8 @@ package classesDAO;
 
 import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
 import model.Photo;
+import persistencia.EntityManFact;
 
 public class PhotoDAO extends GenericDAO<Photo> implements interfacesDAO.IPhotoDAO{
 	private static EntityManagerFactory manFac;	

@@ -1,11 +1,11 @@
 package classesDAO;
 import javax.persistence.EntityManagerFactory;
 
-import cosas.EntityManFact;
 import interfacesDAO.IRatingDAO;
 
 import model.Rating;
 import model.Trail;
+import persistencia.EntityManFact;
 
 public class RatingDAO extends GenericDAO<Rating>implements IRatingDAO{
 	private static EntityManagerFactory manFac;	
